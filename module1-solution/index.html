@@ -1,39 +1,46 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
     <style>
-      .message { font-size: 1.3em; font-weight: bold; }
+        .message {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .rmk {
+            font-style:italic; 
+            font-size:0.8em;
+        }
     </style>
 
-  </head>
+</head>
+
 <body ng-app='LunchCheck'>
 
-   <div class="container" ng-controller='LunchCheckCtrl'>
+    <div class="container" ng-controller='LunchCheckCtrl'>
 
-     <h1>Lunch Checker</h1>
+        <h1>Lunch Checker</h1>
 
-     <div class="form-group">
-         <input id="lunch-menu" type="text"
-         placeholder="list comma separated dishes you usually have for lunch"
-         class="form-control"
-         ng-model='input'>
-         <div style='font-style:italic; font-size:0.8em;'>*Empty items are NOT considered.</div>
-     </div>
+        <div class="form-group">
+            <input id="lunch-menu" type="text" placeholder="list comma separated dishes you usually have for lunch" class="form-control" ng-model='input'>
+            <div class='rmk'>*Empty items are NOT considered.</div>
+        </div>
 
-     <div class="form-group">
-         <button class="btn btn-default" ng-click='check()'>Check If Too Much</button>
-     </div>
+        <div class="form-group">
+            <button class="btn btn-default" ng-click='check()'>Check If Too Much</button>
+        </div>
 
-     <div class="form-group message" ng-style='myColor'>
-       {{ message }}
-     </div>
+        <div class="form-group message" ng-style='myColor'>
+            {{ message }}
+        </div>
 
-   </div>
+    </div>
 
-   <script src='angular.min.js'></script>
-   <script src='app.js'></script>
+    <script src='angular.min.js'></script>
+    <script src='app.js'></script>
 </body>
+
 </html>
