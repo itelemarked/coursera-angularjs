@@ -13,6 +13,7 @@
 
     self.narrowIt = function() {
       self.inputTxt ? self.foundItems = MenuSearchService.getMatchedMenuItems(self.inputTxt) : self.foundItems = [];
+      console.log(self.foundItems);
     };
     
     self.removeItemAtIndex = function(index) {
