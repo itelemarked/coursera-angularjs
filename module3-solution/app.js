@@ -11,9 +11,12 @@
   function NarrowItDownController(MenuSearchService) {    
     var self = this;
 
-    self.narrowIt = function() {
-      self.inputTxt ? self.foundItems = MenuSearchService.getMatchedMenuItems(self.inputTxt) : self.foundItems = [];
-      console.log(self.foundItems);
+    self.narrowIt = function() {   	  
+    	  var promise = MenuSearchService.getMatchedMenuItems(self.inputTxt);
+    	  
+    	  promise.then(function(result) {
+    	  	self.inputTxt ? self.foundItems = result : self.foundItems = [];
+    	  });
     };
     
     self.removeItemAtIndex = function(index) {
@@ -31,16 +34,16 @@
       var allItems = [];
       var filteredItems = [];
            
-      $http.get(menusUrl).then(function(result) {
+      return $http.get(menusUrl).then(function(result) {
         allItems = result.data.menu_items;
         angular.forEach(allItems, function(item, index) {
           if(item.description.toLowerCase().indexOf(searchTerm) !== -1)
             filteredItems.push(item);
         })
+        return filteredItems;
       });
-      console.log(filteredItems);
-      return filteredItems;
-    };    
+      
+    };
   }
   
   
