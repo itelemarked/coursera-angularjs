@@ -10,6 +10,8 @@
   NarrowItDownController.$inject = ['MenuSearchService'];
   function NarrowItDownController(MenuSearchService) {    
     var self = this;
+    
+    self.foundItems = [];
 
     self.narrowIt = function() {   	  
     	  var filteredItemsPromise = MenuSearchService.getMatchedMenuItems(self.inputTxt);
@@ -53,7 +55,8 @@
           "<li ng-repeat='item in items'>{{item.name}}, {{item.short_name}}, {{item.description}} " +
           "<button ng-click='onRemove({index:$index})'>Don't want this one!</button>" +
           "</li>" +
-        "</ol>";
+        "</ol>" +
+        "<div ng-if='items.length === 0'>Nothing found! {{items.length}}</div>";
     
     return {
       restrict: 'E',
