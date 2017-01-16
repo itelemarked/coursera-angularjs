@@ -12,9 +12,9 @@
     var self = this;
 
     self.narrowIt = function() {   	  
-    	  var promise = MenuSearchService.getMatchedMenuItems(self.inputTxt);
+    	  var filteredItemsPromise = MenuSearchService.getMatchedMenuItems(self.inputTxt);
     	  
-    	  promise.then(function(result) {
+    	  filteredItemsPromise.then(function(result) {
     	  	self.inputTxt ? self.foundItems = result : self.foundItems = [];
     	  });
     };
