@@ -56,7 +56,7 @@
           "<button ng-click='onRemove({index:$index})'>Don't want this one!</button>" +
           "</li>" +
         "</ol>" +
-        "<div ng-if='items.length === 0'>Nothing found! {{items.length}}</div>";
+        "<div class='errorMsg' ng-if='items.length === 0'>Nothing found!</div>";
     
     return {
       restrict: 'E',
