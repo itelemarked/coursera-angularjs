@@ -18,6 +18,7 @@
     self.removeItemAtIndex = function(index) {
       self.foundItems.splice(index, 1);
     };    
+    alert('aaa');
   }
   
   
