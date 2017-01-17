@@ -39,7 +39,7 @@
       return $http.get(menusUrl).then(function(result) {
         allItems = result.data.menu_items;
         angular.forEach(allItems, function(item, index) {
-          if(item.description.toLowerCase().indexOf(searchTerm) !== -1)
+          if(item.description.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1)
             filteredItems.push(item);
         })
         return filteredItems;
