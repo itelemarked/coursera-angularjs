@@ -5,9 +5,4 @@
 
 <h3>Menu items</h3>
 
-<ul>
-	<li ng-repeat='item in it.items'>
-		<div>{{item.name}}, ({{item.short_name}})</div>
-		<div class='description'>{{item.description}}</div>
-	</li>
-</ul>
+<items list='it.items'></items>
