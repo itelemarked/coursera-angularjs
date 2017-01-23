@@ -27,6 +27,19 @@
         	}],
         }
       })
+      
+      .state('items', {
+        url: '/items/{categoryShortName}',
+        templateUrl: 'src/templates/items.view.html',
+        controller: 'ItemsCtrl as item',
+        resolve: {
+        	items: ['MenuDataService', function(MenuDataService) {
+        		return MenuDataService.getItemsForCategory().then(function(result) {
+        			return result.data;
+        		});
+        	}],
+        }
+      })
         
   }
 
