@@ -21,9 +21,7 @@
         controller: 'CategoriesCtrl as cat',
         resolve: {
         	categories: ['MenuDataService', function(MenuDataService) {
-        		return MenuDataService.getAllCategories().then(function(result) {
-        			return result.data;
-        		});
+        		return MenuDataService.getAllCategories();
         	}],
         }
       })
@@ -34,9 +32,7 @@
 				controller: 'ItemsCtrl as it',
         resolve: {
         	items: ['$stateParams', 'MenuDataService', function($stateParams, MenuDataService) {
-        		return MenuDataService.getItemsForCategory($stateParams.categoryShortName).then(function(result) {
-        			return result.data.menu_items;
-        		});
+        		return MenuDataService.getItemsForCategory($stateParams.categoryShortName);
         	}],
         }
       })
