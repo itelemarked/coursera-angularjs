@@ -31,13 +31,17 @@
       .state('items', {
         url: '/items/{categoryShortName}',
         templateUrl: 'src/templates/items.view.html',
-        controller: 'ItemsCtrl as item',
+				controller: 'ItemsCtrl as it',
         resolve: {
-        	items: ['MenuDataService', function(MenuDataService) {
-        		return MenuDataService.getItemsForCategory().then(function(result) {
-        			return result.data;
+        	categoryShortName: ['$stateParams', function($stateParams) {
+        		return $stateParams.categoryShortName;
+        	}],
+        	items: ['MenuDataService', 'categoryShortName', function(MenuDataService, categoryShortName) {
+        		return MenuDataService.getItemsForCategory(categoryShortName).then(function(result) {
+        			return result.data.menu_items;
         		});
         	}],
+					
         }
       })
         

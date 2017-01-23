@@ -15,9 +15,13 @@
   }
   
   
-  ItemsCtrl.$inject = [];
-  function ItemsCtrl() {
-  	var item = this;
+  ItemsCtrl.$inject = ['categoryShortName', 'items'];
+  function ItemsCtrl(categoryShortName, items) {
+  	var it = this;
+  	
+  	it.items = items;
+  	console.log(items[0]);
+  	
   }
   
 
