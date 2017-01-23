@@ -20,10 +20,13 @@
         templateUrl: 'src/templates/categories.view.html',
         controller: 'CategoriesCtrl as cat',
         resolve: {
-        	categories: ['MenuDataService', function(MenuDataService) {
+        	categories: ['MenuDataService', '$rootScope', function(MenuDataService, $rootScope) {
+            $rootScope.$broadcast('categories:processing', {processing: true})
         		return MenuDataService.getAllCategories().then(function(result) {
         			return result.data;
-        		});
+        		}).finally(function() {
+              $rootScope.$broadcast('categories:processing', {processing: false})
+            });
         	}],
         }
       })

@@ -3,7 +3,8 @@
 
   angular.module('MenuApp')
   .controller('CategoriesCtrl', CategoriesCtrl)
-  .controller('ItemsCtrl', ItemsCtrl);
+  .controller('ItemsCtrl', ItemsCtrl)
+  .controller('SpinnerCtrl', SpinnerCtrl);
 
 
   CategoriesCtrl.$inject = ['categories'];
@@ -19,6 +20,25 @@
   	var it = this;
 
   	it.items = items;
+  }
+
+
+  SpinnerCtrl.$inject = ['$rootScope'];
+  function SpinnerCtrl($rootScope) {
+    var $ctrl = this;
+
+    var cancelListener = $rootScope.$on('categories:processing', function (event, data) {
+      if (data.processing) {
+        $ctrl.showSpinner = true;
+      }
+      else {
+        $ctrl.showSpinner = false;
+      }
+    });
+
+    $ctrl.$onDestroy = function () {
+      cancelListener();
+    };
   }
 
 
