@@ -3,32 +3,21 @@
 
   angular.module('data')
   .service('MenuDataService', MenuDataService);
-  
-  MenuDataService.$inject = ['$http', '$q', '$timeout'];
-  function MenuDataService($http, $q, $timeout) {
+
+  MenuDataService.$inject = ['$http'];
+  function MenuDataService($http) {
     var self = this;
-    
-//     self.getAllCategories = function() {
-//     	return $http.get('https://davids-restaurant.herokuapp.com/categories.json');
-//     };
+    var urlBase = 'https://davids-restaurant.herokuapp.com';
 
 		self.getAllCategories = function() {
-			var deferred = $q.defer();
-						
-			$timeout(function() {
-				$http.get('https://davids-restaurant.herokuapp.com/categories.json').then(function(result) {
-					deferred.resolve(result);
-				});
-			}, 1000);
-    	
-    	return deferred.promise;
+			return $http.get(urlBase + '/categories.json');
     };
-    
+
     self.getItemsForCategory = function(categoryShortName) {
-      return $http.get('https://davids-restaurant.herokuapp.com/menu_items.json?category=' + categoryShortName);
+      return $http.get(urlBase + '/menu_items.json?category=' + categoryShortName);
     };
-    
+
   }
-  
+
 
 }());
